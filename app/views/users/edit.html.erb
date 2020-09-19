@@ -1,0 +1,29 @@
+<% if @user.errors.any? %>
+  <div>
+    <h3><%= @user.errors.count %>件のerrorが発生しました</h3>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<h1>User info</h1>
+
+<%= form_for(@user) do |f| %>
+
+  <h4>Name</h4>
+  <%= f.text_field :name %>
+
+  <h4>Image</h4>
+  <%= f.attachment_field :profile_image%>
+
+  <h4>introduction</h4>
+  <%= f.text_area :introduction %>
+
+  <%= f.submit 'Update User' %>
+
+<% end %>
+</div>
