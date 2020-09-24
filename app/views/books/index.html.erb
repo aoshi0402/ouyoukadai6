@@ -57,19 +57,10 @@
         </td>
 				<td>  <%= link_to book.title, book_path(book.id) %>  </td>
 				<td>  <%= book.body %>  </td>
-        <td>
-          <% if book.favorited_by?(current_user) %>
-            <%= link_to book_favorites_path(book), method: :delete do %>
-              <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-              <%= book.favorites.count %> 
-          <% end %>
-          <% else %>
-            <%= link_to book_favorites_path(book), method: :post do %>
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-              <%= book.favorites.count %> 
-            <% end %>
-        </td>
-            <% end %>
+        <td class="book_<%= book.id %>">
+        <%= render 'favorites/favorite', book: book %>
+      </td>
+        
         <td>
         <ul class="inline-meta">
             <%= link_to "コメント数：#{book.book_comments.count} ", book_path(book) %>

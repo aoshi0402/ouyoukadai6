@@ -1,0 +1,22 @@
+<ol>
+  <% book.book_comments.each do |book_comment| %>
+    <li class="comment">
+      <div class="comment-body bb">
+        <div class="comment-avatar">
+          <div class="avatar">
+            <%= image_tag('no-image.png', style: "width: 60px; height: 60px;") %>
+            <span class="comment-entry"> <%= book_comment.comment %></span>
+          </div>
+        </div>
+        <div class="comment-text"></div>
+          <div class="comment-author clearfix">
+            <a href="#" class="link-author"><%= book_comment.user.name %></a>
+          </div>
+        
+      </div>
+    </li>
+      <% if book_comment.user == current_user %>
+              <%= link_to "削除", book_book_comment_path(book_comment.book, book_comment), method: :delete,remote: true, class: "btn btn-danger pull-right" %>
+          <% end %>
+  <% end %>
+</ol>
